@@ -5,10 +5,11 @@ const PORT = process.env.PORT || 3000;
 const app = express()
 const mongoose = require('mongoose');
 
+
 const {userSchema} = require("./schema/userSchema");
 const User = mongoose.model('User', userSchema);
 
-app.use(cors);
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -29,17 +30,20 @@ main();
 
 
 
-app.get('/api/signup', async (req,res) => {
+app.post('/api/signup', async (req,res) => {
+    console.log("signup?", req.body);
 
     try{
         const result = await User.create({
-            username:"admin3",
-            password: "admin3"
+            username: req.body.username,
+            password: req.body.password
         })
         console.log("result",result)
 
         //res.json(result);
-        res.redirect("/")
+        res.json({
+            message: "success"
+        })
     
     } catch(err){
         console.log(err)
@@ -51,18 +55,27 @@ app.get('/api/signup', async (req,res) => {
 app.post('/api/login', async (req,res) => {
     console.log("what did i get?", req.body);
 
-    /*
+
     try{
         const targetUser = await User.findOne({
             username: req.body.username,
         })
 
         if(targetUser.password === req.body.password){
+            //req.sessions.user = req.body.username;
+
+            res.json({
+                message: "success",
+                user: {
+                    username: targetUser.username
+                }
+            })
 
             //success login
         } else {
             res.json({
-                message: "Login failed"
+                message: "Login failed",
+               
             })
         }
 
@@ -70,7 +83,7 @@ app.post('/api/login', async (req,res) => {
     } catch(err){
         console.log(err)
     }
-    */
+   
 
 });
 

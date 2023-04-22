@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import Edit from './components/Edit';
+import SignUp from './components/SignUp';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login/>,
+    },
+    {
+        path: "/signup",
+        element: <SignUp/>,
     },
     {
         path: "/cart",

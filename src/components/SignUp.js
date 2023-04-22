@@ -14,7 +14,7 @@ import bgImg from "../images/background.jpg";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function SignUp() {
 
     const {user} = useSelector(selectUser)
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function Login() {
         //this function gets called on submit form
         console.log(e.target.username.value, e.target.password.value);
 
-        const response = await fetch("/api/login", {
+        const response = await fetch("/api/signup", {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
                 "Content-Type": "application/json"
@@ -72,11 +72,12 @@ export default function Login() {
 
 
     return <Box {...bgStyles}>
-        <div className="logo" onClick={()=> navigate("/")}>
+   <div className="logo" onClick={()=> navigate("/")}>
         
         [Logo]
       </div>
             <Box {...boxStyles} >
+            <h2>Sign Up</h2>
             <form onSubmit={submitHandler}>
                 <FormControl>
                     <FormLabel>Username</FormLabel>
