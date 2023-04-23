@@ -5,23 +5,34 @@ import Book from "./Book";
 import {selectCart,addToCart} from "../features/cart/cartSlice";
 import {useNavigate} from "react-router-dom";
 import {userLogin, selectUser} from  '../features/user/userSlice'
+import { useEffect } from "react";
 
 export default function Home(){
-
-    //redux
-    //Implement at least one Redux connect function to read values from the Redux store 
-
-    const {user} = useSelector(selectUser)
-
-
-     console.log("did i get user?", user)
-
-
+    const user = useSelector(selectUser)
     const books = useSelector(selectBooks); //matches value from store
     const cart = useSelector(selectCart); //matches value from store
 
     //react router dom
     const navigate = useNavigate()
+
+    //redux
+    //Implement at least one Redux connect function to read values from the Redux store 
+
+    useEffect(()=>{
+        if(user === false){
+            //redirect tohe login
+            //navigate("l/ogin")
+        }
+
+    },[])
+
+
+
+
+     console.log("did i get user?", user)
+
+
+
 
 
     return <div className={"Home"}>
